@@ -14,6 +14,7 @@ npm install
 
 ```
 DB_HOST=localhost
+DB_PORT=3306
 DB_USER=你的帳號
 DB_PASSWORD=你的密碼
 DB_NAME=succulent_shop
@@ -59,7 +60,7 @@ npm start
 2. 在 Zeabur 新增專案並連結該 GitHub Repository。
 3. Build Command：`npm install`
 4. Start Command：`npm start`
-5. 設定環境變數：`DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `JWT_SECRET`, `SESSION_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `FB_APP_ID`, `FB_APP_SECRET`, `ECPAY_MERCHANT_ID`, `ECPAY_HASH_KEY`, `ECPAY_HASH_IV`, `ECPAY_RETURN_URL`, `ECPAY_CLIENT_BACK_URL`, `ECPAY_GATEWAY`。
+5. 設定環境變數：`DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `JWT_SECRET`, `SESSION_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `FB_APP_ID`, `FB_APP_SECRET`, `ECPAY_MERCHANT_ID`, `ECPAY_HASH_KEY`, `ECPAY_HASH_IV`, `ECPAY_RETURN_URL`, `ECPAY_CLIENT_BACK_URL`, `ECPAY_GATEWAY`。
 6. 將 `ECPAY_CLIENT_BACK_URL` 設為 `https://<你的域名>/success.html`，`ECPAY_RETURN_URL` 設為 `https://<你的域名>/api/orders/ecpay/notify`，付款完成即可回到網站並顯示「付款完成」畫面。
 
 ---
