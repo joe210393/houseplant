@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>照顧須知 - 多肉植物商店</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <h2>照顧須知</h2>
+    <div id="care-posts" class="about-cards"></div>
+  </main>
+  <div id='site-footer'></div>
+  <script src="js/main.js"></script>
+  <script>
+    fetch('/api/admin/care')
+      .then(res => res.json())
+      .then(posts => {
+        const container = document.getElementById('care-posts');
+        if (!posts.length) {
+          container.innerHTML = '<p style="color:#888;">尚無內容</p>';
+          return;
+        }
+        container.innerHTML = posts.map(post => `
+          <div class="about-card">
+            <h3>${post.title || ''}</h3>
+            <div class="about-content">${post.content || ''}</div>
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html> 

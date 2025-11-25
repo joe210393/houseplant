@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>會員中心 - 多肉植物商店</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main style="max-width:600px;margin:2em auto;">
+    <h2>會員中心</h2>
+    <div id="user-welcome" style="margin-bottom:2em;"></div>
+    <section>
+      <h3>我的訂單</h3>
+      <div id="user-orders">載入中...</div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    // 顯示使用者名稱
+    const username = localStorage.getItem('username');
+    document.getElementById('user-welcome').textContent = username ? `您好，${username}` : '';
+    // 查詢訂單
+    const token = localStorage.getItem('token');
+    if (!token) {
+      document.getElementById('user-orders').innerHTML = '<p>請先登入</p>';
+    } else {
+      fetch('/api/orders', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (!Array.isArray(data) || data.length === 0) {
+            document.getElementById('user-orders').innerHTML = '<p>尚無訂單</p>';
+            return;
+          }
+          document.getElementById('user-orders').innerHTML = data.map(order => `
+            <div class="order-card" style="border:1px solid #c8e6c9; border-radius:8px; margin-bottom:1em; padding:1em;">
+              <div><b>訂單編號：</b>${order.id}</div>
+              <div><b>總金額：</b>NT$${order.total_price}</div>
+              <div><b>下單時間：</b>${order.created_at ? order.created_at.replace('T',' ').slice(0,19) : ''}</div>
+              <div><b>狀態：</b><span id="order-status-${order.id}">${order.status || '處理中'}</span></div>
+              <div><b>商品：</b><ul style="margin:0; padding-left:1.2em;">${order.items ? order.items.map(item => `<li>${item.name} x ${item.quantity}（NT$${item.price}）</li>`).join('') : ''}</ul></div>
+              ${order.status !== '已取消' ? `<button onclick="cancelOrder(${order.id})" id="cancel-btn-${order.id}" style="margin-top:0.5em;">取消訂單</button>` : ''}
+            </div>
+          `).join('');
+        });
+      // 取消訂單函式
+      window.cancelOrder = function(orderId) {
+        if (!confirm('確定要取消這筆訂單嗎？')) return;
+        fetch(`/api/orders/${orderId}/cancel`, {
+          method: 'PATCH',
+          headers: { 'Authorization': 'Bearer ' + token }
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.message === '訂單已取消') {
+              document.getElementById('order-status-' + orderId).textContent = '已取消';
+              const btn = document.getElementById('cancel-btn-' + orderId);
+              if (btn) btn.remove();
+            } else {
+              alert(data.message || '取消失敗');
+            }
+          });
+      };
+    }
+  </script>
+</body>
+</html> 

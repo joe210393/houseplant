@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>結帳 - 多肉植物商店</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <h2>訂單確認</h2>
+    <div style="position:relative;">
+      <button id="checkout-left" style="position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:2;display:none;">&#8592;</button>
+      <div id="checkout-list" style="display:flex;overflow-x:auto;gap:1em;padding:1em 2.5em 1em 2.5em;"></div>
+      <button id="checkout-right" style="position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:2;display:none;">&#8594;</button>
+    </div>
+    <div id="checkout-total"></div>
+    <form id="checkout-form" style="max-width:1100px;margin:2em auto 0 auto;display:flex;gap:2em;justify-content:center;align-items:flex-start;flex-wrap:wrap;">
+      <div class="checkout-section" style="flex:1 1 260px;min-width:220px;text-align:left;">
+        <h3>收件人資訊</h3>
+        <label>電話：<input type="text" id="order-tel" required></label><br>
+        <label>手機：<input type="text" id="order-mobile" required></label><br>
+        <label>姓名：<input type="text" id="order-name" required></label><br>
+      </div>
+      <div class="checkout-section" style="flex:1 1 220px;min-width:200px;text-align:left;">
+        <h3>送貨方式</h3>
+        <label><input type="radio" name="ship-method" value="宅配" required>宅配</label>
+        <label><input type="radio" name="ship-method" value="超商自取">超商自取</label><br>
+        <div id="address-block" style="display:none;margin-top:1em;">
+          <label>地址：<input type="text" id="order-address"></label>
+        </div>
+        <div id="store-block" style="display:none;margin-top:1em;">
+          <label>超商：
+            <select id="store-type">
+              <option value="">請選擇</option>
+              <option value="7-11">7-11</option>
+              <option value="全家">全家</option>
+            </select>
+          </label><br>
+          <label>門市名稱：<input type="text" id="store-name"></label>
+        </div>
+      </div>
+      <div class="checkout-section" style="flex:1 1 220px;min-width:200px;text-align:left;">
+        <h3>付款方式</h3>
+        <label><input type="radio" name="pay-method" value="信用卡" required>信用卡</label>
+        <label><input type="radio" name="pay-method" value="匯款">匯款</label>
+        <label><input type="radio" name="pay-method" value="超商取貨付款">超商取貨付款</label><br>
+        <button type="submit" id="submit-order-btn" style="margin-top:1.5em;width:100%;">送出訂單</button>
+      </div>
+    </form>
+    <style>
+    @media (max-width: 900px) {
+      #checkout-form { flex-direction: column; align-items: stretch; }
+      .checkout-section { min-width: 0; }
+    }
+    </style>
+  </main>
+  <div id='site-footer'></div>
+  <script src="js/main.js"></script>
+</body>
+</html> 

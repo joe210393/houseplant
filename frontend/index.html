@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多肉植物商店</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <div id="carousel"></div>
+    <!-- Hero 區塊 -->
+    <section class="hero">
+      <h1>多肉植物商店</h1>
+      <p>用一盆多肉，療癒你的生活。</p>
+    </section>
+    <!-- 新品上市 -->
+    <section>
+      <h2>新品上市</h2>
+      <div class="product-list" id="new-products"></div>
+    </section>
+    <!-- 照護須知 -->
+    <section id="care-index-section">
+      <h2>照護須知</h2>
+      <div id="care-index-list" class="about-cards"></div>
+    </section>
+    <!-- 商品分類快速導覽 -->
+    <section>
+      <h2>商品分類</h2>
+      <ul class="category-list" id="index-category-list">
+        <!-- JS 動態插入分類 -->
+      </ul>
+    </section>
+    <!-- 品牌簡介與聯絡資訊 -->
+    <section class="about">
+      <h2>關於我們</h2>
+      <div id="about-content"></div>
+    </section>
+  </main>
+  <div id="carousel-modal">
+    <button id="carousel-modal-close">&times;</button>
+    <img id="carousel-modal-img" src="" alt="預覽大圖">
+  </div>
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理後台 - 多肉植物商店</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-tabs { display: flex; gap: 1em; margin-bottom: 1.5em; }
+    .admin-tabs button { padding: 0.7em 1.5em; border: none; background: #e8f5e9; color: #388e3c; border-radius: 6px; font-size: 1em; cursor: pointer; }
+    .admin-tabs button.active { background: #388e3c; color: #fff; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+    .admin-table { width: 100%; border-collapse: collapse; margin-bottom: 1em; }
+    .admin-table th, .admin-table td { border: 1px solid #c8e6c9; padding: 0.5em; text-align: center; }
+    .admin-table th { background: #e8f5e9; }
+    .admin-table tr:nth-child(even) { background: #f1f8e9; }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main>
+    <h2>管理後台</h2>
+    <div class="admin-tabs">
+      <button data-tab="carousel" class="active">首頁輪播圖</button>
+      <button data-tab="about">關於我們</button>
+      <button data-tab="care">照顧須知</button>
+      <button data-tab="products">商品管理</button>
+      <button data-tab="orders">訂單查詢</button>
+    </div>
+    <section id="tab-carousel" class="admin-section active"></section>
+    <section id="tab-about" class="admin-section"></section>
+    <section id="tab-care" class="admin-section"></section>
+    <section id="tab-products" class="admin-section"></section>
+    <section id="tab-orders" class="admin-section"></section>
+  </main>
+  <div id='site-footer'></div>
+  <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html> 
