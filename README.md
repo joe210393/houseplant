@@ -34,9 +34,15 @@ ECPAY_GATEWAY=https://payment-stage.ecpay.com.tw/Cashier/AioCheckOut/V5
 
 3. 初始化資料庫
 
-```bash
-mysql -u 你的帳號 -p < database/schema.sql
-```
+- **方式一：直接使用 MySQL CLI**
+  ```bash
+  mysql -u 你的帳號 -p -e "CREATE DATABASE IF NOT EXISTS succulent_shop;"
+  mysql -u 你的帳號 -p succulent_shop < database/schema.sql
+  ```
+- **方式二：使用專案提供的 migrate 指令（會讀取 .env 參數）**
+  ```bash
+  npm run migrate
+  ```
 
 4. 啟動伺服器
 
@@ -62,6 +68,16 @@ npm start
 4. Start Command：`npm start`
 5. 設定環境變數：`DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, `JWT_SECRET`, `SESSION_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `FB_APP_ID`, `FB_APP_SECRET`, `ECPAY_MERCHANT_ID`, `ECPAY_HASH_KEY`, `ECPAY_HASH_IV`, `ECPAY_RETURN_URL`, `ECPAY_CLIENT_BACK_URL`, `ECPAY_GATEWAY`。
 6. 將 `ECPAY_CLIENT_BACK_URL` 設為 `https://<你的域名>/success.html`，`ECPAY_RETURN_URL` 設為 `https://<你的域名>/api/orders/ecpay/notify`，付款完成即可回到網站並顯示「付款完成」畫面。
+7. 匯入資料庫：在本機執行
+   ```bash
+   DB_HOST=hkg1.clusters.zeabur.com \
+   DB_PORT=31500 \
+   DB_USER=root \
+   DB_PASSWORD=你的密碼 \
+   DB_NAME=zeabur \
+   npm run migrate
+   ```
+   （以上參數請改成 Zeabur MySQL 提供的實際值）
 
 ---
 
