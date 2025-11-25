@@ -78,6 +78,7 @@ npm start
    npm run migrate
    ```
    （以上參數請改成 Zeabur MySQL 提供的實際值）
+8. Zeabur 會自動注入 `PORT=${WEB_PORT}`，不要手動改寫；Node 程式會使用 `process.env.PORT` 自動綁定平台提供的連接埠。
 
 ---
 
